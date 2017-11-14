@@ -24,12 +24,15 @@ class Case(models.Model):
             To save last sighted date of missing person
     ``person_photo``
             Field to upload the pic of a missing person
+
+    TODO:
+    Add phone number validator
     """
     owner = models.ForeignKey("UserProfile", related_name="cases_opened")
     person_name = models.CharField(max_length=100)
     person_age = models.IntegerField()
     person_address = models.CharField(max_length=500)
-    person_phone = models.IntegerField(12)
+    person_phone = models.CharField(max_length=12)
     person_description = models.CharField(max_length=250)
     missing_date = models.DateField(default=timezone.now)
     last_sighted_date = models.DateField()
@@ -42,8 +45,10 @@ class Case(models.Model):
 class UserProfile(models.Model):
     '''
     This model stores information about site users.
-    Fields like email, names and phone number are captured by the
-    user object
+    Fields like email, names and phone number are captured by the 
+    user object.
+    TODO:
+    Add different user types i.e law enforcement, normal users etc.
     '''
     user = models.OneToOneField(User)
 
