@@ -42,10 +42,11 @@ class Case(models.Model):
 class UserProfile(models.Model):
     '''
     This model stores information about site users.
-    Fields like email, names and phone number are captured by the 
+    Fields like email, names and phone number are captured by the
     user object
     '''
     user = models.OneToOneField(User)
+
 
 class Sighting(models.Model):
     '''
@@ -53,11 +54,11 @@ class Sighting(models.Model):
     Containing basic info such as the associated case ,
     place sighted ,time and date sighted
     '''
-    case = models.ForeignKey(Case,on_delete=models.CASCADE)
+    case = models.ForeignKey(Case, on_delete=models.CASCADE)
     sighted_by = models.ManyToManyField(UserProfile)
     location_sighted = models.CharField(max_length=256)
     date_sighted = models.DateTimeField()
     additional_info = models.TextField()
-    
+
     def __str__(self):
         return self.case + ' : ' + self.date_sighted
